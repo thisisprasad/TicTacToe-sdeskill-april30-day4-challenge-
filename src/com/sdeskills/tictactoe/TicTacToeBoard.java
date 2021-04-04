@@ -5,6 +5,15 @@ public class TicTacToeBoard {
 
     public TicTacToeBoard() {
         board = new char[Constants.BOARD_ROW_SIZE][Constants.BOARD_COL_SIZE];
+        fillBoardWithValue(Constants.BOARD_EMPTY_VALUE);
+    }
+
+    private void fillBoardWithValue(char value) {
+        for(int i = 0; i < getRowSize(); i++) {
+            for(int j = 0; j < getColSize(); j++) {
+                this.board[i][j] = value;
+            }
+        }
     }
 
     /**
@@ -25,5 +34,17 @@ public class TicTacToeBoard {
     public void setCell(int x, int y, char value) {
         x--; y--;
         this.board[x][y] = value;
+    }
+
+    public int getRowSize() {
+        return this.board.length;
+    }
+
+    public int getColSize() {
+        return this.board[0].length;
+    }
+
+    public boolean isCellEmpty(int i, int j) {
+        return this.board[i][j] == Constants.BOARD_EMPTY_VALUE
     }
 }
