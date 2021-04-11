@@ -17,12 +17,13 @@ public class TicTacToeMinmax {
         }
 
         if (minimize) {
+            hval = Integer.MAX_VALUE;
             for (int i = 1; i <= board.getRowSize(); i++) {
                 for (int j = 1; j <= board.getColSize(); j++) {
                     if (board.isCellEmpty(i, j)) {
                         board.setCell(i, j, Constants.BOARD_CIRCLE_VALUE);
-                        hval = Math.max(hval, heuristicValue(board, depth + 1, !minimize));
-                        board.setCell(i, j, Constants.BOARD_CIRCLE_VALUE);
+                        hval = Math.min(hval, heuristicValue(board, depth + 1, !minimize));
+                        board.setCell(i, j, Constants.BOARD_EMPTY_VALUE);
                     }
                 }
             }

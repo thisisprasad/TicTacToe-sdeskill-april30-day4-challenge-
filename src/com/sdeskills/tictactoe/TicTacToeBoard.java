@@ -46,7 +46,14 @@ public class TicTacToeBoard {
         return this.board[0].length;
     }
 
+    /**
+     * Excpects cell positions as 1-indexed
+     * @param i
+     * @param j
+     * @return
+     */
     public boolean isCellEmpty(int i, int j) {
+        i -= 1; j -= 1;
         return this.board[i][j] == Constants.BOARD_EMPTY_VALUE;
     }
 
@@ -60,7 +67,7 @@ public class TicTacToeBoard {
     public boolean hasWonGame(char playerValue) {
         for (int row = 0; row < this.getRowSize(); row++) {
             if (this.board[row][0] == playerValue &&
-                    this.board[row][0] == this.board[row][1] && this.board[row][1] == this.board[0][2]) {
+                    this.board[row][0] == this.board[row][1] && this.board[row][1] == this.board[row][2]) {
                 return true;
             }
         }
@@ -84,15 +91,42 @@ public class TicTacToeBoard {
 
     /**
      * Checks whether can any move be made on the board by a player.
+     *
      * @return
      */
     public boolean hasMovesLeft() {
-        for(int i = 0; i < this.getRowSize(); i++) {
-            for(int j = 0; j < this.getColSize(); j++) {
-                if(this.board[i][j] == Constants.BOARD_EMPTY_VALUE)
+        for (int i = 0; i < this.getRowSize(); i++) {
+            for (int j = 0; j < this.getColSize(); j++) {
+                if (this.board[i][j] == Constants.BOARD_EMPTY_VALUE)
                     return true;
             }
         }
         return false;
+    }
+
+    /**
+     * @param nextMove
+     * @return - returns true if the cell position is valid, ow false
+     */
+    public boolean validateCellPosition(int x, int y) {
+        if (x < 1 || x > this.getRowSize() || y < 1 || y > this.getColSize()) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Prints the current board state on console.
+     */
+    public void print() {
+        System.out.println("--------------------------------------------------");
+        for(int i = 0; i < this.getRowSize(); i++) {
+            for(int j = 0; j < this.getColSize(); j++) {
+                char cellValue = (board[i][j] == Constants.BOARD_EMPTY_VALUE) ? ' ' : board[i][j];
+                System.out.print("| " + cellValue + " |");
+            }
+            System.out.println();
+        }
+        System.out.println("--------------------------------------------------");
     }
 }
