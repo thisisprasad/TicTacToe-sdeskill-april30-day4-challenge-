@@ -24,5 +24,5 @@ Voila! Your game will start.
 
 # Snapshots
 ![Game start](./img/start_img.PNG)
-<br>
+<br><br>
 ![Game finish](./img/computer_won.PNG)
